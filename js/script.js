@@ -33,25 +33,48 @@ const weapons = [
         power: 100
     },
 ];
+const monsters = [
+    {
+        name: "slime",
+        level: 2,
+        health: 15
+    },
+    {
+        name: "fanged beast",
+        level: 8,
+        health: 60
+    },
+    {
+        name: "dragon",
+        level: 20,
+        health: 300
+    }
+];
 const locations = [
     {
-    name: "town square",
-    "button text": ["Go to store", "Go to cave", "Fight dragon"],
-    "button functions": [goStore, goCave, fightDragon],
-    text: "You are in the town square. You see a sign that says \"Store\"."
+        name: "town square",
+        "button text": ["Go to store", "Go to cave", "Fight dragon"],
+        "button functions": [goStore, goCave, fightDragon],
+        text: "You are in the town square. You see a sign that says \"Store\"."
     },
     {
-    name: "store",
-    "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
-    "button functions": [buyHealth, buyWeapon, goTown],
-    text: "You enter the store."
+        name: "store",
+        "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
+        "button functions": [buyHealth, buyWeapon, goTown],
+        text: "You enter the store."
     },
     {
-    name: "cave",
-    "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
-    "button functions": [fightSlime, fightBeast, goTown],
-    text: "You enter the cave. You see some monsters."
+        name: "cave",
+        "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
+        "button functions": [fightSlime, fightBeast, goTown],
+        text: "You enter the cave. You see some monsters."
     },
+    {
+        name: "fight",
+        "button text": ["Attack", "Dodge", "Run"],
+        "button functions": [attack, dodge, goTown],
+        text: "You are fighting a monster."
+    }
 ];
 
 // initialize buttons
@@ -79,10 +102,6 @@ function goStore() {
 
 function goCave() {
     update(locations[2]);
-}
-
-function fightDragon() {
-    console.log("Fighting dragon.");
 }
 
 function buyHealth() {
@@ -129,9 +148,28 @@ function sellWeapon(){
 }
 
 function fightSlime(){
+    fighting = 0;
+    goFight();
+}
+
+function fightBeast() {
+    fighting = 1;
+    goFight();
+}
+
+function fightDragon() {
+    fighting = 2;
+    goFight();
+}
+
+function goFight(){
+    update(locations[3]);
+}
+
+function attack(){
 
 }
 
-function fightBeast(){
+function dodge(){
 
 }
